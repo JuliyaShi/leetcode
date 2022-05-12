@@ -1,17 +1,29 @@
 // Solution for TypeScript
 function romanToInt(s: string): number {
-  const roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000};
-  let int = 0;
-
-  for (let i = 0; i < s.length - 1; i++) {
-    if (roman[s[i]] < roman[s[i + 1]]) {
-      int -= roman[s[i]];
-    } else {
-      int += roman[s[i]];
+    const mapped = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
     }
-  }
-
-  return int + roman[s[s.length - 1]];
+    let value = 0;
+    for(let i = 0; i < s.length; i++) {
+        // The rule behind the scenes is that roman numbers 
+        // have a decreasing order unless it's a subsctraction from the next one.
+        
+        // if it is not the last number and current is less than next, it means
+        // that we should substract.
+		
+        if((i+1) !== s.length && mapped[s[i]] < mapped[s[i+1]]) {
+            value -= mapped[s[i]];
+        } else {
+            value += mapped[s[i]];
+        }
+    }
+    return value;
 };
 
 
