@@ -1,0 +1,27 @@
+function plusOne(digits: number[]): number[] {
+   const plusOne = digits[digits.length - 1] + 1;
+    const shouldCarry = plusOne > 9;
+    
+    if (!shouldCarry) {
+        digits[digits.length -1] = plusOne;    
+        return digits;
+    }
+    
+    let carryOne = true;
+    
+    for (let x = digits.length - 1; x >= 0; x--) {
+        let plusOne = digits[x] + 1;
+        
+        if (plusOne > 9) {
+            digits[x] = 0;
+        } else {
+            digits[x] = plusOne;
+            carryOne = false;
+            break;
+        }
+    }
+    
+    if (carryOne) digits.unshift(1);
+    
+    return digits;
+};
