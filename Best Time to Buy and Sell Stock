@@ -1,0 +1,19 @@
+function maxProfit(prices: number[]): number {
+    let minPrice = Number.MAX_SAFE_INTEGER;
+    let maxProfit = 0;
+    let ptr = 0;
+    
+    while (ptr < prices.length) {
+        // see if this is the cheapest price to buy at
+        if (prices[ptr] < minPrice) {
+            minPrice = prices[ptr];
+        }
+        // check if this is the most profitable day to sell
+        else if (prices[ptr] - minPrice > maxProfit) {
+            maxProfit = prices[ptr] - minPrice;
+        }
+        ptr += 1;
+    }
+    
+    return maxProfit;
+};
